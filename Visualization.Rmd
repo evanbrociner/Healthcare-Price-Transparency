@@ -1,0 +1,66 @@
+---
+title: "Visualization"
+author: "Evan Brociner"
+date: "3/15/2022"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+
+```
+
+
+```{r}
+price_per_hospital.df<- read.csv('data/price_per_hospital.csv')
+```
+
+Whats the variance between prices per code?
+```{r}
+library(dplyr)
+
+avg.price.df<- read.csv('data/avg_price.csv')
+
+
+avg.price.df<- avg.price.df %>% group_by(code) %>% summarise(mean=mean(price), sd=sd(price))
+
+```
+
+
+```{r}
+library(ggplot2)
+ggplot(avg.price.df, aes(x=code, y=mean)) + 
+  geom_point()+
+  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.2,
+                position=position_dodge(0.05))
+  
+
+```
+
+Whats the variance between prices per code hospital?
+```{r}
+
+price_per_hospital.df %>% group_by(code) %>% summarise(mean=mean(AVG.price.), sd=sd(AVG.price.))
+
+```
+
+What are the significant factors impacting cost?
+```{r}
+
+```
+
+
+
+Average variability per hopsital location to other hospitals
+```{r}
+
+```
+
+
+
+
+Quality = price?
+```{r}
+
+```
+
